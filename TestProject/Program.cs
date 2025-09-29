@@ -1,11 +1,27 @@
-﻿int firstValue = 500;
-int secondValue = 600;
-int largervalue = Math.Max(firstValue, secondValue);
-int smallervalue = Math.Min(firstValue, secondValue);
+﻿Random dice = new Random();
 
-Console.WriteLine(largervalue);
-Console.WriteLine(smallervalue);
+int roll1 = dice.Next(1, 7);
+int roll2 = dice.Next(1, 7);
+int roll3 = dice.Next(1, 7);
 
-if (largervalue > smallervalue) {
-    Console.WriteLine("Yup, this is accurate");
+int total = roll1 + roll2 + roll3;
+
+if (roll1 == roll2 || roll1 == roll3 || roll2 == roll3) {
+    Console.WriteLine("You rolled doubles! +2 bonus points to total!");
+    total += 2;
 }
+
+if (roll1 == roll2 && roll1 == roll3) {
+    Console.WriteLine("You rolled triples! +6 bonus points to total!");
+    total += 6;
+}
+
+Console.WriteLine($"Dice roll: {roll1} + {roll2} + {roll3} = {total}");
+
+if (total >= 15) {
+    Console.WriteLine("You win!");
+}
+if (total < 15) {
+    Console.WriteLine("Sorry, you lose");
+}
+
