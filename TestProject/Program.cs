@@ -18,3 +18,4 @@ foreach (double CGPA in CGPAs)
         Console.WriteLine(CGPA);
     }
 }
+
