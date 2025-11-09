@@ -1,19 +1,39 @@
-﻿/*
-The following code creates five random OrderIDs to test the fraud detection process. OrderIDs consist of a letter from A to E, and a three digit number. Eg A123.
+﻿// Test: Make the following code readable
+
+/*
+string str = "The quick brown fox jumps over the lazy dog.";
+// convert the message into a char array
+char[] charMessage = str.ToCharArray();
+// Reverse the chars
+Array.Reverse(charMessage);
+int x = 0;
+// count the o's
+foreach (char i in charMessage) { if (i == 'o') { x++; } }
+// convert it back to a string
+string new_message = new String(charMessage);
+// print it out
+Console.WriteLine(new_message);
+Console.WriteLine($"'o' appears {x} times.");
 */
-Random random = new Random();
-string[] orderIDs = new string[5];
 
-for (int i = 0; i < orderIDs.Length; i++)
+
+// Solution
+
+/* To reverse a string and count the number of times a particular character appears, and then print out the results to the console window*/
+string originalMessage = "The quick brown fox jumps over the lazy dog.";
+
+char[] message = originalMessage.ToCharArray();
+Array.Reverse(message);
+
+int letterCount = 0;
+foreach (char i in message)
 {
-    int prefixValue = random.Next(65, 70);
-    string prefix = Convert.ToChar(prefixValue).ToString();
-    string suffix = random.Next(1, 1000).ToString("000");
-
-    orderIDs[i] = prefix + suffix;
+    if (i == 'o')
+    {
+        letterCount++; 
+    } 
 }
+string newMessage = new String(message);
 
-foreach (var orderID in orderIDs)
-{
-    Console.WriteLine(orderID);
-}
+Console.WriteLine(newMessage);
+Console.WriteLine($"'o' appears {letterCount} times.");
