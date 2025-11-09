@@ -7,3 +7,14 @@ foreach (string orderID in OrderIDs)
         Console.WriteLine(orderID);
     }
 }
+
+double[] CGPAs = [2.34, 3.45, 4.67, 4.65, 2.43, 3.23, 3.98, 4.01];
+// To get each cgpa greater than 4.00
+
+foreach (double CGPA in CGPAs)
+{
+    if (CGPA >= 4.00)
+    {
+        Console.WriteLine(CGPA);
+    }
+}
