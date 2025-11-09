@@ -1,21 +1,19 @@
-﻿string[] OrderIDs = ["B123", "C234", "A345", "C15", "B177", "G3003", "C235", "B179"];
+﻿/*
+The following code creates five random OrderIDs to test the fraud detection process. OrderIDs consist of a letter from A to E, and a three digit number. Eg A123.
+*/
+Random random = new Random();
+string[] orderIDs = new string[5];
 
-foreach (string orderID in OrderIDs)
+for (int i = 0; i < orderIDs.Length; i++)
 {
-    if (orderID.StartsWith("B"))
-    {
-        Console.WriteLine(orderID);
-    }
+    int prefixValue = random.Next(65, 70);
+    string prefix = Convert.ToChar(prefixValue).ToString();
+    string suffix = random.Next(1, 1000).ToString("000");
+
+    orderIDs[i] = prefix + suffix;
 }
 
-double[] CGPAs = [2.34, 3.45, 4.67, 4.65, 2.43, 3.23, 3.98, 4.01];
-// To get each cgpa greater than 4.00
-
-foreach (double CGPA in CGPAs)
+foreach (var orderID in orderIDs)
 {
-    if (CGPA >= 4.00)
-    {
-        Console.WriteLine(CGPA);
-    }
+    Console.WriteLine(orderID);
 }
-
