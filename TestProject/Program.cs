@@ -1,23 +1,113 @@
-﻿int employeeLevel = 100;
-string employeeName = "John Smith";
+﻿// Question
+/*
+// SKU = Stock Keeping Unit. 
+// SKU value format: <product #>-<2-letter color code>-<size code>
+string sku = "01-MN-L";
 
-string title = "";
+string[] product = sku.Split('-');
 
-switch (employeeLevel) 
+string type = "";
+string color = "";
+string size = "";
+
+if (product[0] == "01")
 {
-    case 100:
-    case 200:
-        title = "Senior Associate";
+    type = "Sweat shirt";
+} else if (product[0] == "02")
+{
+    type = "T-Shirt";
+} else if (product[0] == "03")
+{
+    type = "Sweat pants";
+}
+else
+{
+    type = "Other";
+}
+
+if (product[1] == "BL")
+{
+    color = "Black";
+} else if (product[1] == "MN")
+{
+    color = "Maroon";
+} else
+{
+    color = "White";
+}
+
+if (product[2] == "S")
+{
+    size = "Small";
+} else if (product[2] == "M")
+{
+    size = "Medium";
+} else if (product[2] == "L")
+{
+    size = "Large";
+} else
+{
+    size = "One Size Fits All";
+}
+
+Console.WriteLine($"Product: {size} {color} {type}");
+*/
+
+//My solution
+
+// SKU = Stock Keeping Unit.
+// SKU value format: <product #>-<2-letter colour code>-<size code>
+string sku = "01-MN-L";
+
+string[] product = sku.Split('-');
+
+string type = "";
+string colour = "";
+string size = "";
+
+switch (product[0])
+{
+    case "01":
+        type = "Sweat shirt";
         break;
-    case 300:
-        title = "Manager";
+    case "02":
+        type = "T-Shirt";
         break;
-    case 400:
-        title = "Senior Manager";
+    case "03":
+        type = "Sweat pants";
         break;
     default:
-        title = "Associate";
+        type = "Other";
         break;
 }
 
-Console.WriteLine($"{employeeName}, {title}");
+switch (product[1])
+{
+    case "BL":
+        colour = "Black";
+        break;
+    case "MN":
+        colour = "Maroon";
+        break;
+    default:
+        colour = "White";
+        break;
+}
+
+switch (product[2])
+{
+    case "S":
+        size = "Small";
+        break;
+    case "M":
+        size = "Medium";
+        break;
+    case "L":
+        size = "Large";
+        break;
+    default:
+        size = "One Size Fits All";
+        break;
+}
+
+Console.WriteLine ($"Product: {size} {colour} {type}");
