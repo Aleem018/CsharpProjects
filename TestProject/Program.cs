@@ -1,22 +1,17 @@
-﻿for (int i = 0; i < 10; i++)
+﻿for (int i = 1; i <= 100; i++)
 {
-    Console.WriteLine(i);
-    if (i == 7) break;
+    if (i % 3 == 0)
+    {
+        Console.WriteLine($"{i} - Fizz");
+        if (i % 5 == 0)
+        {
+            Console.WriteLine($"{i} - FizzBuzz");
+        }
+    } else if (i % 5 == 0) 
+    {
+        Console.WriteLine($"{i} - Buzz");
+    } else
+    {
+        Console.WriteLine(i);
+    }
 }
-
-string[] names = { "Alex", "Eddie", "David", "Aleem" };
-for (int j = names.Length - 1; j >= 0; j--)
-{
-    Console.WriteLine(names[j]);
-}
-for (int k = 0; k < names.Length; k++)
-{
-    Console.WriteLine(names[k]);
-}
-
-for (int l = 0; l < names.Length; l++)
-{
-    if (names[l] == "David") names[l] = "Sammy";
-}
-
-foreach (var name in names) Console.WriteLine(name);
