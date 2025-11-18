@@ -1,113 +1,22 @@
-﻿// Question
-/*
-// SKU = Stock Keeping Unit. 
-// SKU value format: <product #>-<2-letter color code>-<size code>
-string sku = "01-MN-L";
-
-string[] product = sku.Split('-');
-
-string type = "";
-string color = "";
-string size = "";
-
-if (product[0] == "01")
+﻿for (int i = 0; i < 10; i++)
 {
-    type = "Sweat shirt";
-} else if (product[0] == "02")
-{
-    type = "T-Shirt";
-} else if (product[0] == "03")
-{
-    type = "Sweat pants";
-}
-else
-{
-    type = "Other";
+    Console.WriteLine(i);
+    if (i == 7) break;
 }
 
-if (product[1] == "BL")
+string[] names = { "Alex", "Eddie", "David", "Aleem" };
+for (int j = names.Length - 1; j >= 0; j--)
 {
-    color = "Black";
-} else if (product[1] == "MN")
+    Console.WriteLine(names[j]);
+}
+for (int k = 0; k < names.Length; k++)
 {
-    color = "Maroon";
-} else
-{
-    color = "White";
+    Console.WriteLine(names[k]);
 }
 
-if (product[2] == "S")
+for (int l = 0; l < names.Length; l++)
 {
-    size = "Small";
-} else if (product[2] == "M")
-{
-    size = "Medium";
-} else if (product[2] == "L")
-{
-    size = "Large";
-} else
-{
-    size = "One Size Fits All";
+    if (names[l] == "David") names[l] = "Sammy";
 }
 
-Console.WriteLine($"Product: {size} {color} {type}");
-*/
-
-//My solution
-
-// SKU = Stock Keeping Unit.
-// SKU value format: <product #>-<2-letter colour code>-<size code>
-string sku = "01-MN-L";
-
-string[] product = sku.Split('-');
-
-string type = "";
-string colour = "";
-string size = "";
-
-switch (product[0])
-{
-    case "01":
-        type = "Sweat shirt";
-        break;
-    case "02":
-        type = "T-Shirt";
-        break;
-    case "03":
-        type = "Sweat pants";
-        break;
-    default:
-        type = "Other";
-        break;
-}
-
-switch (product[1])
-{
-    case "BL":
-        colour = "Black";
-        break;
-    case "MN":
-        colour = "Maroon";
-        break;
-    default:
-        colour = "White";
-        break;
-}
-
-switch (product[2])
-{
-    case "S":
-        size = "Small";
-        break;
-    case "M":
-        size = "Medium";
-        break;
-    case "L":
-        size = "Large";
-        break;
-    default:
-        size = "One Size Fits All";
-        break;
-}
-
-Console.WriteLine ($"Product: {size} {colour} {type}");
+foreach (var name in names) Console.WriteLine(name);
