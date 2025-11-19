@@ -1,57 +1,103 @@
-﻿Random random = new Random();
-int damage;
+﻿/* // Code project 1- Code that validates integer input
 
-int heroHealth = 10;
-int monsterHealth = 10;
-int turn = 0;
+Console.WriteLine("Enter an integer value between 5 and 10.");
+
+string? readResult;
+int numericValue = 0;
+bool validNumber = false;
 do
 {
-    damage = random.Next(1, 11);
-    turn += 1;
-    if (turn % 2 == 1)
+    do
     {
-        monsterHealth -= damage;
+        readResult = Console.ReadLine();
+    } while (readResult == null);
 
-        Console.WriteLine($"Monster was damaged and lost {damage} health and now has {monsterHealth} health");
-    } else if (turn % 2 == 0)
+
+    validNumber = int.TryParse(readResult, out numericValue);
+    if (validNumber == false)
     {
-        heroHealth -= damage;
-
-        Console.WriteLine($"Hero was damaged and lost {damage} health and now has {heroHealth} health");
+        Console.WriteLine("Sorry, you entered an invalid number, please try again.");
+        continue;
     }
 
-     
-}   while ( heroHealth > 0 && monsterHealth > 0);
-
-if (heroHealth <= 0)
+    if (numericValue < 5 || numericValue > 10)
     {
-        Console.WriteLine("Monster wins!");
-    } else if (monsterHealth <= 0)
+        Console.WriteLine($"You entered {numericValue}. Please enter a number between 5 and 10.");
+        continue;
+    } else if (numericValue >= 5 && numericValue <= 10)
     {
-        Console.WriteLine("Hero wins!");
+        break;
     }
 
-    /*
-    Similar code
-int hero = 10;
-int monster = 10;
+    
+} while (true);
 
-Random dice = new Random();
+Console.WriteLine($"Your input value ({numericValue}) has been accepted!");
 
+*/
+
+/*
+// Code project 2- write code that validates string input
+
+Console.WriteLine("Enter your role name (Administrator, Manager or User)"); 
+
+string? roleName;
+string inputValue;
 do
 {
-    int roll = dice.Next(1, 11);
-    monster -= roll;
-    Console.WriteLine($"Monster was damaged and lost {roll} health and now has {monster} health.");
+    do
+    {
+        roleName = Console.ReadLine();
+    } while (roleName == null);
 
-    if (monster <= 0) continue;
+    inputValue = roleName.ToLower().Trim();
+    if (inputValue == "administrator" || inputValue == "manager" || inputValue == "user")
+    {
+        break;
+    } else
+    {
+        Console.WriteLine($"The role name you entered, '{roleName}' is not valid. Enter your role name (Administrator, Manager or User)");
+    }
 
-    roll = dice.Next(1, 11);
-    hero -= roll;
-    Console.WriteLine($"Hero was damaged and lost {roll} health and now has {hero} health.");
+} while (true);
 
-} while (hero > 0 && monster > 0);
+Console.WriteLine($"Your input value ({roleName.Trim()}) has been accepted.");
+*/
 
-Console.WriteLine(hero > monster ? "Hero wins!" : "Monster wins!");
+// Code project 3- Code that processes the contents of a string array.
 
-    */
+string[] myStrings = new string[2] { "I like pizza. I like roast chicken. I like salad", "I like all three of the menu choices" };
+int stringsCount = myStrings.Length;
+
+string myString = "";
+int periodLocation = 0;
+
+for (int i = 0; i < stringsCount; i++)
+{
+    myString = myStrings[i];
+    periodLocation = myString.IndexOf(".");
+
+    string mySentence;
+
+    // to extract sentences from each string and display them one at a time
+    while (periodLocation != -1)
+    {
+        // first sentence is the string value to the left of the period location
+        mySentence = myString.Remove(periodLocation);
+
+    // the remainder of myString is the string value to the right of the location
+    myString = myString.Substring(periodLocation + 1);
+
+    // remove any leading white-space from myString
+    myString = myString.TrimStart();
+
+    // update the period location and increment the counter
+    periodLocation = myString.IndexOf(".");
+
+    Console.WriteLine(mySentence);
+    }
+
+    mySentence = myString.Trim();
+    Console.WriteLine(mySentence);
+
+}
