@@ -1,31 +1,24 @@
-﻿string customerName = "Ms. Barros";
+﻿// string message = "Find what is (inside the parentheses)";
 
-string currentProduct = "Magic Yield";
-int currentShares = 2975000;
-decimal currentReturn = 0.1275m;
-decimal currentProfit = 55000000.0m;
+// int openingPosition = message.IndexOf('(');
+// int closingPosition = message.IndexOf(')');
 
-string newProduct = "Glorious Future";
-decimal newReturn = 0.13125m;
-decimal newProfit = 63000000.0m;
+// // Console.WriteLine(openingPosition);
+// // Console.WriteLine(closingPosition);
 
-// My logic here
+// openingPosition += 1;
 
-Console.WriteLine($"Dear {customerName},");
-Console.WriteLine($"As a customer of our {currentProduct} offering we are excited to tell you about a new financial product that would dramaticaly increase your return.\n");
-Console.WriteLine($"Currently, you own {currentShares:N} shares at a return of {currentReturn:P2}.\n");
-Console.WriteLine($"Our new product, {newProduct} offers a return of {newReturn:P2}. Given your current volume, your potential profit would be {newProfit:C}.\n");
+// int length = closingPosition - openingPosition;
+// Console.WriteLine(message.Substring(openingPosition, length));
 
-Console.WriteLine("Here's a quick comparison:\n");
+string message = "What is the value <span>between the tags</span>?";
 
-string comparisonMessage = "";
+const string openSpan = "<span>";
+const string closeSpan = "</span>";
 
-comparisonMessage = currentProduct.PadRight(20);
-comparisonMessage += string.Format("{0:P2}", currentReturn).PadRight(10);
-comparisonMessage += string.Format("{0:C}\n", currentProfit);
+int openingPosition = message.IndexOf(openSpan);
+int closingPosition = message.IndexOf(closeSpan);
 
-comparisonMessage += newProduct.PadRight(20);
-comparisonMessage += string.Format("{0:P}", newReturn).PadRight(10);
-comparisonMessage += string.Format("{0:C}", newProfit);
-
-Console.WriteLine(comparisonMessage);
+openingPosition += openSpan.Length;
+int length = closingPosition - openingPosition;
+Console.WriteLine(message.Substring(openingPosition, length));
