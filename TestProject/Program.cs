@@ -1,31 +1,59 @@
-﻿// string message = "hello there";
+﻿// string message = "Hello, world!";
+// char[] charsToFind = { 'a', 'e', 'i' };
 
-// int first_h = message.LastIndexOf('h');
-// int last_h = message.LastIndexOf('h');
+// int index = message.IndexOfAny(charsToFind);
 
-// Console.WriteLine($"For the message: '{message}', the first 'h' is at position {first_h} and the last 'h' is at position {last_h}.");
+// Console.WriteLine($"Found '{message[index]}' in '{message}' at index: {index}.");
 
-string message = "(What if) I am (only interested) in the last (set of parentheses)?";
-int openingPosition = message.LastIndexOf('(');
+// string message = "Help (find) the {opening symbols}";
+// Console.WriteLine($"Searching THIS Mesage: {message}");
+// char[] openSymbols = { '[', '{', '(' };
+// int startPosition = 5;
+// int openingPosition = message.IndexOfAny(openSymbols);
+// Console.WriteLine($"Found WITHOUT using startPosition: {message.Substring(openingPosition)}");
 
-openingPosition += 1;
-int closingPosition = message.LastIndexOf(')');
-int length = closingPosition - openingPosition;
+// openingPosition = message.IndexOfAny(openSymbols, startPosition);
+// Console.WriteLine($"Found WITH using startPosition {startPosition}: {message.Substring(openingPosition)}");
 
-Console.WriteLine(message.Substring(openingPosition, length));
+string message = "(What if) I have [different symbols] but every {open symbol} needs a [matching closing symbol]?";
 
-// To retrieve all instances of substrings inside parentheses
-string message1 = "(What if) there are (more than) one (set of parentheses)?";
+// The IndexOfAny() method requires a char array of characters
+
+char[] openSymbols = { '[', '{', '(' };
+
+int closingPosition = 0;
+
 while (true)
 {
-    int openingPosition1 = message1.IndexOf('(');
-    if (openingPosition1 == -1) break;
+    int openingPosition = message.IndexOfAny(openSymbols, closingPosition);
 
-    openingPosition1 += 1;
-    int closingPosition1 = message1.IndexOf(')');
-    int length1 = closingPosition1 - openingPosition1;
-    Console.WriteLine(message1.Substring(openingPosition1, length1));
+    if (openingPosition == -1) break;
 
-    // To return the remaining unprocessed message
-    message1 = message1.Substring(closingPosition1 + 1);
+    string currentSymbol = message.Substring(openingPosition, 1);
+
+    // Now, to find the matching closing symbol
+    char matchingSymbol = ' ';
+
+    switch (currentSymbol)
+    {
+        case "[":
+            matchingSymbol = ']';
+            break;
+        case "{":
+            matchingSymbol = '}';
+            break;
+        case "(":
+            matchingSymbol = ')';
+            break;
+    }
+
+    // To find the closingPosition, use an overload of the IndexOf method to specify that the search for the matching symbol should start at the openingPosition in the string
+
+    openingPosition += 1;
+    closingPosition = message.IndexOf(matchingSymbol, openingPosition);
+
+    // Finally...
+
+    int length = closingPosition - openingPosition;
+    Console.WriteLine(message.Substring(openingPosition, length));
 }
