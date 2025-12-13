@@ -1,57 +1,12 @@
-﻿const string input = "<div><h2>Widgets &trade;</h2><span>5000</span></div>";
+﻿Console.WriteLine("Generating random numbers: ");
+DisplayRandomNumbers();
+void DisplayRandomNumbers()
+{
+    Random random = new Random();
 
-string quantity = "";
-string output = "";
-
-// My work here
-int openingPosition = input.IndexOf("<span>");
-int closingPosition = input.IndexOf("</span>");
-openingPosition += 6;
-
-int length = closingPosition - openingPosition;
-quantity = input.Substring(openingPosition, length);
-
-output = input.Replace("<div>", "");
-output = output.Replace("</div>", "");
-
-output = output.Replace("&trade", "&reg");
-
-Console.WriteLine($"Quantity: {quantity}");
-Console.WriteLine($"Output: {output}");
-
-/*
-const string input = "<div><h2>Widgets &trade;</h2><span>5000</span></div>";
-
-string quantity = "";
-string output = "";
-
-// Your work here
-
-// Extract the "quantity"
-const string openSpan = "<span>";
-const string closeSpan = "</span>";
-
-int quantityStart = input.IndexOf(openSpan) + openSpan.Length; // + length of <span> so index at end of <span> tag
-int quantityEnd= input.IndexOf(closeSpan);
-int quantityLength = quantityEnd - quantityStart;
-quantity = input.Substring(quantityStart, quantityLength);
-quantity = $"Quantity: {quantity}";
-
-// Set output to input, replacing the trademark symbol with the registered trademark symbol
-const string tradeSymbol = "&trade;";
-const string regSymbol = "&reg;";
-output = input.Replace(tradeSymbol, regSymbol);
-
-// Remove the opening <div> tag
-const string openDiv = "<div>";
-int divStart = output.IndexOf(openDiv);
-output = output.Remove(divStart, openDiv.Length);
-
-// Remove the closing </div> tag and add "Output:" to the beginning
-const string closeDiv = "</div>";
-int divCloseStart = output.IndexOf(closeDiv);
-output = "Output: " + output.Remove(divCloseStart, closeDiv.Length);
-
-Console.WriteLine(quantity);
-Console.WriteLine(output);
-*/
+    for (int i = 0; i < 5; i++)
+    {
+        Console.Write($"{random.Next(1, 100)} ");
+    }
+    Console.WriteLine();
+}
