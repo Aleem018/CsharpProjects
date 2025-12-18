@@ -1,39 +1,48 @@
-﻿using System.Net.NetworkInformation;
+﻿int a = 3;
+int b = 4;
+int c = 0;
 
-string[] students = {"Jenna", "Ayesha", "Carlos", "Viktor"};
+Multiply(a, b, c);
+Console.WriteLine($"global statements: {a} x {b} = {c}");
 
-DisplayStudents(students);
-DisplayStudents(new string[] {"Robert", "Vanya"});
-
-void DisplayStudents(string[] students)
+void Multiply(int a, int b, int c)
 {
-    foreach (string student in students)
+    c = a * b;
+    Console.WriteLine($"inside Multiply method: {a} x {b} x {c}");
+}
+
+int[] array = {1, 2, 3, 4, 5};
+
+PrintArray(array);
+Clear(array);
+PrintArray(array);
+
+void PrintArray(int[] array)
+{
+    foreach (int a in array)
     {
-        Console.Write($"{student}, ");
+        Console.Write($"{a} ");
     }
     Console.WriteLine();
 }
 
-double pi = 3.14159;
-
-PrintCircleInfo(12);
-PrintCircleInfo(24);
-
-void PrintCircleArea(int radius)
+void Clear(int[] array)
 {
-    double area = pi * (radius * radius);
-    Console.WriteLine($"Area = {area:N}");
+    for (int i = 0; i < array.Length; i++)
+    {
+        array[i] = 0;
+    }
 }
 
-void PrintCircleCircumference(int radius)
-{
-    double circumference = 2 * pi * radius;
-    Console.WriteLine($"Circumference = {circumference:N}");
-}
 
-void PrintCircleInfo(int radius)
+string status = "Healthy";
+
+Console.WriteLine($"Start: {status}");
+SetHealth(status, false);
+Console.WriteLine($"End: {status}");
+
+void SetHealth(string status, bool isHealthy)
 {
-    Console.WriteLine($"Circle with radius {radius}");
-    PrintCircleArea(radius);
-    PrintCircleCircumference(radius);
+    status = (isHealthy ? "Healthy" : "Unhealthy");
+    Console.WriteLine($"Middle: {status}");
 }
