@@ -1,48 +1,45 @@
-﻿int a = 3;
-int b = 4;
-int c = 0;
+﻿string[] guestList = {"Rebecca", "Nadia", "Noor", "Jonte"};
+string[] rsvps = new string[10];
+int count = 0;
 
-Multiply(a, b, c);
-Console.WriteLine($"global statements: {a} x {b} = {c}");
+RSVP("Rebecca");
+RSVP("Nadia", 2, "Nuts");
+RSVP(name: "Linh", partySize: 2, inviteOnly: false);
+RSVP("Tony", allergies: "Jackfruit", inviteOnly: true);
+RSVP("Noor", 4, inviteOnly: false);
+RSVP("Jonte", 2, "Stone fruit", false);
+ShowRSVPs();
 
-void Multiply(int a, int b, int c)
+void RSVP(string name, int partySize = 1, string allergies = "none", bool inviteOnly = true)
 {
-    c = a * b;
-    Console.WriteLine($"inside Multiply method: {a} x {b} x {c}");
-}
-
-int[] array = {1, 2, 3, 4, 5};
-
-PrintArray(array);
-Clear(array);
-PrintArray(array);
-
-void PrintArray(int[] array)
-{
-    foreach (int a in array)
+    if (inviteOnly)
     {
-        Console.Write($"{a} ");
+        // search guestList before adding rsvp
+        bool found = false;
+        foreach (string guest in guestList)
+        {
+            if (guest.Equals(name))
+            {
+                found = true;
+                break;
+            }
+        }
+        if (!found)
+        {
+            Console.WriteLine($"Sory, {name} is not on the guest list");
+            return;
+        }
     }
-    Console.WriteLine();
+
+    rsvps[count] = $"Name: {name}, \tParty Size: {partySize}, \tAllergies: {allergies}";
+    count++;
 }
 
-void Clear(int[] array)
+void ShowRSVPs()
 {
-    for (int i = 0; i < array.Length; i++)
+    Console.WriteLine("\nTotal RSVPs:");
+    for (int i = 0; i < count; i++)
     {
-        array[i] = 0;
+        Console.WriteLine(rsvps[i]);
     }
-}
-
-
-string status = "Healthy";
-
-Console.WriteLine($"Start: {status}");
-SetHealth(status, false);
-Console.WriteLine($"End: {status}");
-
-void SetHealth(string status, bool isHealthy)
-{
-    status = (isHealthy ? "Healthy" : "Unhealthy");
-    Console.WriteLine($"Middle: {status}");
 }
