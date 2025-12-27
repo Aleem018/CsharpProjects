@@ -1,12 +1,14 @@
-﻿int target = 80;
+﻿int target = 30;
 int[] coins = new int[] {5, 5, 50, 25, 25, 10, 5};
 int[,] result = TwoCoins(coins, target);
 
 if (result.Length == 0)
 {
+    Console.WriteLine($"Target sum = {target}");
     Console.WriteLine("No two coins make change");
 } else
 {
+    Console.WriteLine($"Target sum = {target}");
     Console.WriteLine($"Change found at positions: ");
     for (int i = 0; i < result.GetLength(0); i++)
     {
