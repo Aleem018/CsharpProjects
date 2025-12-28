@@ -1,49 +1,87 @@
-﻿int target = 30;
-int[] coins = new int[] {5, 5, 50, 25, 25, 10, 5};
-int[,] result = TwoCoins(coins, target);
+﻿using System.Diagnostics.CodeAnalysis;
+using Microsoft.VisualBasic;
 
-if (result.Length == 0)
+Random random = new Random();
+
+string? readResult = "";
+
+Console.WriteLine("Would you like to play? (Y/N)");
+if (ShouldPlay())
 {
-    Console.WriteLine($"Target sum = {target}");
-    Console.WriteLine("No two coins make change");
-} else
+    PlayGame();
+}
+
+void PlayGame()
 {
-    Console.WriteLine($"Target sum = {target}");
-    Console.WriteLine($"Change found at positions: ");
-    for (int i = 0; i < result.GetLength(0); i++)
+    var play = true;
+
+    while (play)
     {
-        if (result[i,0] == -1)
-        {
-            break;
-        }
-        Console.WriteLine($"{result[i,0]}, {result[i,1]}");
+        int target;
+        int roll;
+
+        target = TargetMethod();
+        roll = RollMethod();
+
+        Console.WriteLine($"Roll a number greater than {target} to win!");
+        Console.WriteLine($"You rolled a {roll}");
+        Console.WriteLine(WinOrLose(roll, target));
+        Console.WriteLine("\nPlay again? (Y/N)");
+
+        play = ShouldPlay();
+        
     }
 }
 
-int[,] TwoCoins(int[] coins, int target)
+bool ShouldPlay()
 {
-    int[,] result = {{-1,-1},{-1,-1},{-1,-1},{-1,-1},{-1,-1}};
-    int count = 0;
-
-    for (int curr = 0; curr < coins.Length; curr++)
+    bool test = false;
+    do
     {
-        for (int next = curr + 1; next < coins.Length; next++)
+        readResult = Console.ReadLine();
+        string answer = "";
+        if (readResult != null)
         {
-            if (coins[curr] + coins[next] == target)
-            {
-                result[count, 0] = curr;
-                result[count, 1] = next;
-                count++;
-            }
-            if (count == result.GetLength(0))
-            {
-                return result;
-            }
+            answer = readResult.Trim().ToUpper();
+        } else
+        {
+            Console.WriteLine("Error, cannot be a null value");
         }
-    }
-    if (count == 0)
+
+        if (answer == "Y")
+        {
+            return true;
+        } else if (answer == "N")
+        {
+            return false;
+        } else
+        {
+            Console.WriteLine("Invalid input. Enter Y/N");
+            test = true;
+        }
+    } while (test);
+
+    return false;
+}
+
+string WinOrLose(int roll, int target)
+{
+    if (roll > target)
     {
-        return new int[0,0];
+        return "You win!";
+    } else
+    {
+        return "You lose!";
     }
-    return result;
+    
+}
+
+int RollMethod()
+{
+    return random.Next(1, 7);
+}
+
+int TargetMethod()
+{
+    return random.Next(1,6);
 }
