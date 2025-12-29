@@ -1,87 +1,72 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using Microsoft.VisualBasic;
+﻿using System;
 
-Random random = new Random();
-
-string? readResult = "";
-
-Console.WriteLine("Would you like to play? (Y/N)");
-if (ShouldPlay())
+string[] pettingZoo = 
 {
-    PlayGame();
+    "alpacas", "capybaras", "chickens", "ducks", "emus", "geese", 
+    "goats", "iguanas", "kangaroos", "lemurs", "llamas", "macaws", 
+    "ostriches", "pigs", "ponies", "rabbits", "sheep", "tortoises",
+};
+
+RandomizeAnimals();
+
+string[,] group = AssignGroup();
+
+Console.WriteLine("School A");
+
+PrintGroup(group);
+
+PlanSchoolVisit("School A");
+PlanSchoolVisit("School B", 3);
+PlanSchoolVisit("School C", 2);
+
+void PlanSchoolVisit(string schoolName, int groups = 6)
+{
+    RandomizeAnimals();
+    string[,] group = AssignGroup(groups);
+    Console.WriteLine(schoolName);
+    PrintGroup(group);
 }
 
-void PlayGame()
+void RandomizeAnimals()
 {
-    var play = true;
+    Random random = new Random();
 
-    while (play)
+    for (int i = 0; i < pettingZoo.Length; i++)
     {
-        int target;
-        int roll;
+        int r = random.Next(i, pettingZoo.Length);
 
-        target = TargetMethod();
-        roll = RollMethod();
-
-        Console.WriteLine($"Roll a number greater than {target} to win!");
-        Console.WriteLine($"You rolled a {roll}");
-        Console.WriteLine(WinOrLose(roll, target));
-        Console.WriteLine("\nPlay again? (Y/N)");
-
-        play = ShouldPlay();
-        
+        string temp = pettingZoo[i];
+        pettingZoo[i] = pettingZoo[r];
+        pettingZoo[r] = temp;
     }
 }
 
-bool ShouldPlay()
+string[,] AssignGroup(int groups = 6)
 {
-    bool test = false;
-    do
+    string[,] result = new string[groups, pettingZoo.Length/groups];
+
+    int start = 0;
+
+    for (int i = 0; i < groups; i++)
     {
-        readResult = Console.ReadLine();
-        string answer = "";
-        if (readResult != null)
+        for (int j = 0; j < result.GetLength(1); j++)
         {
-            answer = readResult.Trim().ToUpper();
-        } else
-        {
-            Console.WriteLine("Error, cannot be a null value");
+            result[i,j] = pettingZoo[start++];
         }
-
-        if (answer == "Y")
-        {
-            return true;
-        } else if (answer == "N")
-        {
-            return false;
-        } else
-        {
-            Console.WriteLine("Invalid input. Enter Y/N");
-            test = true;
-        }
-    } while (test);
-
-    return false;
-}
-
-string WinOrLose(int roll, int target)
-{
-    if (roll > target)
-    {
-        return "You win!";
-    } else
-    {
-        return "You lose!";
     }
-    
+
+    return result;
 }
 
-int RollMethod()
+void PrintGroup(string[,] group)
 {
-    return random.Next(1, 7);
-}
-
-int TargetMethod()
-{
-    return random.Next(1,6);
+    for (int i = 0; i < group.GetLength(0); i++)
+    {
+        Console.Write($"Group {i + 1}: ");
+        for (int j = 0; j < group.GetLength(1); j++)
+        {
+            Console.Write($"{group[i,j]}  ");
+        }
+        Console.WriteLine();
+    }
 }
